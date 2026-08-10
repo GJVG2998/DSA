@@ -1,0 +1,25 @@
+#include<stdio.h>
+int linear_search(int *arr,int n,int target){
+	int i;
+	for(i=0;i<n;i++)
+		if(arr[i]==target)
+		  return i;
+	return -1;
+}
+int main(){
+    int i=0,n,r,target;
+    printf("enter no. of elements:");// minimum no. of elements is 1
+    scanf("%d",&n);
+    int arr[n];
+    printf("enter target:");
+    scanf("%d",&target);
+    printf("enter elements:");
+    for(i=0;i<n;i++)
+       scanf("%d",&arr[i]);
+    r=linear_search(arr,n,target);
+    if(r==-1)
+      printf("%d is not found",target);
+    else
+      printf("%d is found",arr[r]);
+    return 0;
+}
