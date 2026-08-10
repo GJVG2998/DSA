@@ -1,0 +1,31 @@
+#include<stdio.h>
+int binary_search(int *arr,int left,int right,int target){
+	int mid;
+	while(left<=right){
+		mid=(left+right)/2;
+		if(arr[mid]==target)
+		  return mid;
+		else if(arr[mid]<target)
+		  left=mid+1;
+		else
+		  right=mid-1;
+	}
+	return -1;
+}
+int main(){
+    int i=0,n,r,target;
+    printf("enter no. of elements:");// minimum no. of elements is 1
+    scanf("%d",&n);
+    int arr[n];
+    printf("enter target:");
+    scanf("%d",&target);
+    printf("enter elements:");
+    for(i=0;i<n;i++)
+       scanf("%d",&arr[i]);
+    r=binary_search(arr,0,n-1,target);
+    if(r==-1)
+      printf("%d is not found",target);
+    else
+      printf("%d is found",arr[r]);
+    return 0;
+}
