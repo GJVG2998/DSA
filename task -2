@@ -1,0 +1,14 @@
+#include<stdio.h>
+int main(){
+	int x,n,i,power=1,sum=0;
+	printf("enter the value of x(x>0):");
+ 	scanf("%d",&x);
+ 	printf("enter the no. of terms:");
+ 	scanf("%d",&n);
+ 	for(i=0;i<n;i++){
+ 	   sum=sum+power;
+ 	   power=power*x;
+    }
+    printf("sum=%d\n",sum);
+    return 0;
+}
