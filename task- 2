@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main() {
+    int a[100];
+    int n,k;
+    int i,j,minIndex,temp;
+    printf("enter no. of elements:");
+    scanf("%d", &n);
+    printf("enter elements:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d",&a[i]);
+    printf("enter k:");
+    scanf("%d",&k);
+    for (i=0;i<n-1;i++){
+        minIndex=i;
+        for(j=i+1;j<n;j++){
+            if(a[j]<a[minIndex]){
+                minIndex=j;
+            }
+        }
+        temp=a[i];
+        a[i]=a[minIndex];
+        a[minIndex]=temp;
+    }
+    if (k>=1 && k<=n)
+        printf("%dth smallest element=%d\n",k,a[k-1]);
+    else
+        printf("value of k is invalid\n");
+    return 0;
+}
