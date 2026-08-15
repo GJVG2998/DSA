@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main() {
+    int a[100];
+    int n,i,j,k,key;
+    printf("enter no. of elements:");
+    scanf("%d",&n);
+    printf("enter elements:\n");
+    for(i=0;i<n;i++)
+        scanf("%d", &a[i]);
+    printf("enter the value of k:");
+    scanf("%d",&k);
+    for(i=1;i<n;i++){
+        key=a[i];
+        j=i-1;
+        while(j>=0 && a[j]>key){
+            a[j+1]=a[j];
+            j--;
+        }
+        a[j+1]=key;
+    }
+    if(k>=1 && k<=n)
+        printf("%dth smallest element=%d\n", k, a[k - 1]);
+    else
+        printf("enter valid value of k\n");
+    return 0;
+}
