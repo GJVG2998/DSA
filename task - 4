@@ -1,0 +1,43 @@
+#include <stdio.h>
+#define SIZE 101
+int hashFunction(int key){
+    if(key<0)
+        key=-key;
+    return key%SIZE;
+}
+int twoSum(int arr[],int n,int T){
+    int hashTable[SIZE];
+    int i,index;
+    for(i=0;i<SIZE;i++)
+        hashTable[i]=-1;
+    for (i = 0; i < n; i++){
+        int complement=T-arr[i];
+        index=hashFunction(complement);
+        while(hashTable[index]!=-1){
+            if(hashTable[index]==complement)
+                return 1;
+            index=(index+1)%SIZE;
+        }
+        index=hashFunction(arr[i]);
+        while(hashTable[index]!=-1)
+            index=(index+1)%SIZE;
+        hashTable[index]=arr[i];
+    }
+    return 0;
+}
+int main(){
+    int n,T,i;
+    printf("Enter number of elements:");
+    scanf("%d",&n);
+    int arr[n];
+    printf("Enter array elements:\n");
+    for (i=0;i<n;i++)
+        scanf("%d",&arr[i]);
+    printf("Enter target T:");
+    scanf("%d",&T);
+    if (twoSum(arr,n,T))
+        printf("Yes,two elements have sum equal to %d\n",T);
+    else
+        printf("No,such two elements do not exist\n");
+    return 0;
+}
