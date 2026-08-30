@@ -1,0 +1,47 @@
+#include <stdio.h>
+#define TABLE_SIZE 100
+typedef struct{
+    int key;
+    int frequency;
+    int occupied;
+}HashTable;
+int hashFunction(int key){
+    if(key<0)
+        key=-key;
+    return key%TABLE_SIZE;
+}
+void insert(HashTable table[],int key){
+    int index=hashFunction(key);
+    while (table[index].occupied){
+        if(table[index].key==key){
+            table[index].frequency++;
+            return;
+        }
+        index=(index+1)%TABLE_SIZE;
+    }
+    table[index].key=key;
+    table[index].frequency=1;
+    table[index].occupied = 1;
+}
+void display(HashTable table[]){
+    int i;
+    printf("\nElement\tFrequency:\n");
+    for(i=0;i<TABLE_SIZE;i++){
+        if(table[i].occupied)
+            printf("%d\t%d\n",table[i].key,table[i].frequency);
+    }
+}
+int main(){
+    HashTable table[TABLE_SIZE]={0};
+    int n,i;
+    int arr[100];
+    printf("Enter number of elements:");
+    scanf("%d",&n);
+    printf("Enter the elements:\n");
+    for(i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+        insert(table,arr[i]);
+    }
+    display(table);
+    return 0;
+}
