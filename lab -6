@@ -1,0 +1,33 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+struct Result {
+	int min;
+	int max;
+};
+Result Find(int arr[],int low,int high){
+	Result r;
+	if(low==high){
+		r.min=arr[low];
+		r.max=arr[low];
+		return r;
+	}
+	int mid=(low+high)/2;
+    Result left=Find(arr,low,mid);
+	Result right=Find(arr,mid+1,high);
+	r.min=min(left.min,right.min);
+	r.max=max(left.max,right.max);
+	return r;
+}
+int main(){
+	int arr[50],n;
+	cout<<"enter n:";
+	cin>>n;
+	cout<<"enter elements:"<<endl;
+	for(int i=0;i<n;i++)
+	    cin>>arr[i];
+	Result answer=Find(arr,0,n-1);
+	cout<<"minimum:"<<answer.min<<endl;
+	cout<<"maximum:"<<answer.max<<endl;
+	return 0;
+}
