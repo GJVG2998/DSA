@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+const int INF=1000000000;
+const int MAX=100;
+int main(){
+    int n,m;
+    int dist[MAX][MAX];
+    cin>> n >> m;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            dist[i][j]=(i==j)? 0:INF;
+        }
+    }
+    for(int i=0;i<m;i++){
+        int u,v,w;
+        cin>> u >> v >> w;
+        if(w<dist[u][v]){
+            dist[u][v]=w;
+        }
+    }
+    for(int k=0;k<n;k++){
+        for(int i=0;i<n;i++){
+            if(dist[i][k]==INF)
+                continue;
+            for(int j=0;j<n;j++){
+                if(dist[k][j]==INF)
+                    continue;
+                int newDist=dist[i][k]+dist[k][j];
+                if(newDist<dist[i][j]){
+                    dist[i][j]=newDist;
+                }
+            }
+        }
+    }
+    cout<<"\nShortest Distance Matrix:\n";
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(dist[i][j]==INF)
+                cout<<"INF\t";
+            else
+                cout<<dist[i][j]<<"\t";
+        }
+        cout<<'\n';
+    }
+    for(int i=0;i<n;i++){
+        if(dist[i][i]<0){
+            cout<<"\nNegative-weight cycle detected.\n";
+            return 0;
+        }
+    }
+    return 0;
+}
